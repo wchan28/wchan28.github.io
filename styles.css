@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+section {
+  padding-top: 60px;
+}
+
+.single-result {
+  margin: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.single-result:last-child {
+  border-bottom: none;
+}
