@@ -166,7 +166,7 @@ class App extends React.Component {
   }
 
   get transplantProb() {
-    return 1 - (
+    return 100 * (1 - (
       -0.06884813 *
       (
          0.07789 * this.state.meld +
@@ -193,11 +193,11 @@ class App extends React.Component {
         -0.04237 * cToN(this.state.abo, "O") +
         -0.24775 * bToN(this.state.hemodialysis)
       )
-    );
+    ));
   }
 
   get deathProb() {
-    return 1 - (
+    return 100 * (1 - (
       -0.002785479 *
       (
          0.0966224 * this.state.meld +
@@ -223,7 +223,11 @@ class App extends React.Component {
          0.0002113 * cToN(this.state.abo, "O") +
          0.3852846 * bToN(this.state.hemodialysis)
       )
-    );
+    ));
+  }
+    
+  get activity() {
+    return this.transplantProb + this.deathProb;
   }
 
   get tdi() {
@@ -248,19 +252,24 @@ class App extends React.Component {
           elm('section',
             { id: 'results', className: 'col-md' },
             [
-              //elm('h1', null, 'Results'),
-              //elm('div', { id: 'p-transplant', className: 'single-result'}, [
-                //elm('h4', null, 'Probability of Transplant within 90 Days'),
-                //elm('h1', null, this.formatValue(this.transplantProb))
-              //]),
-              //elm('div', { id: 'p-death', className: 'single-result'}, [
-                //elm('h4', null, 'Probability of Death within 90 Days'),
-                //elm('h1', null, this.formatValue(this.deathProb))
-              //]),
+              elm('h1', null, 'Results'),
               elm('div', { id: 'tdi', className: 'single-result'}, [
-                elm('h1', null, 'Transplant Death Index'),
+                elm('h4', null, 'Transplant Death Index'),
                 elm('h1', null, this.formatValue(this.tdi))
-              ])
+              ]),
+              elm('div', { id: 'p-transplant', className: 'single-result'}, [
+                elm('h4', null, 'pTransplant'),
+                elm('h1', null, this.formatValue(this.transplantProb) + '%')
+              ]),
+              elm('div', { id: 'p-death', className: 'single-result'}, [
+                elm('h4', null, 'pDeath'),
+                elm('h1', null, this.formatValue(this.deathProb) + '%')
+              ]),
+              elm('div', { id: 'p-activity', className: 'single-result'}, [
+                elm('h4', null, 'pActivity'),
+                elm('h1', null, this.formatValue(this.activity) + '%')
+              ]),
+              elm('img', { src: 'chart.png', className: 'img-fluid' })
             ]
           )
         ]
