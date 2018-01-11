@@ -284,7 +284,7 @@ class App extends React.Component {
               ]),
               elm('div', { id: 'tdiGroup', className: 'single-result'}, [
                 elm('h4', null, 'Transplant Death Index'),
-                elm('h1', null, this.tdiGroup)
+                elm('h1', null, 'TDI' + this.tdiGroup)
               ]),
 //              elm('div', { id: 'p-transplant', className: 'single-result'}, [
 //                elm('h4', null, 'pTransplant'),
