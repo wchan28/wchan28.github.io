@@ -357,7 +357,8 @@ class App extends React.Component {
       else if (tdi <= 0.5187594) return 97;
       else if (tdi <= 0.5563703) return 98;
       else if (tdi <= 0.6146271) return 99;
-      else return 100;
+      else if (tdi <= 0.987548)return 100;
+      else return 0;
   }
 
   render() {
