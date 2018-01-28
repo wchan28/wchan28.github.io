@@ -226,16 +226,18 @@ class App extends React.Component {
     ));
   }
     
-  get activity() {
-    return this.transplantProb + this.deathProb;
+  get inactive() {
+      const activity = 0.01 * (this.transplantProb + this.deathProb);
+      return activity < 0.1;
   }
 
   get tdi() {
-    return 0.01 * (this.transplantProb - this.deathProb);
+      return 0.01 * (this.transplantProb - this.deathProb);
   }
 
   get tdiGroup() {
       const tdi = this.tdi;
+      //const inactive = this.inactive();
 //      if (tdi <= 0.01854) {
 //          return 10;
 //      } else if (tdi <= 0.124603) {
@@ -257,8 +259,8 @@ class App extends React.Component {
 //      } else {
 //          return '91+';
 //      }
-      
-      if (tdi === 0) return 0;
+      if (this.inactive) return 'TDI-Inactive';
+      else if (tdi === 0) return 0;
       else if (tdi <= -0.2597767) return 1;
       else if (tdi <= -0.136424) return 2;
       else if (tdi <= -0.0573148) return 3;
@@ -381,10 +383,10 @@ class App extends React.Component {
             { id: 'results', className: 'col-md' },
             [
               elm('h1', null, 'Results'),
-              elm('div', { id: 'rawTDI', className: 'single-result'}, [
-                elm('h4', null, 'Raw Value'),
-                elm('h1', null, this.formatValue(this.tdi))
-              ]),
+//              elm('div', { id: 'rawTDI', className: 'single-result'}, [
+//                elm('h4', null, 'Raw Value'),
+//                elm('h1', null, this.formatValue(this.tdi))
+//              ]),
               elm('div', { id: 'tdiGroup', className: 'single-result'}, [
                 elm('h4', null, 'Transplant Death Index'),
                 elm('h1', null, this.tdiGroup)
