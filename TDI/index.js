@@ -259,7 +259,7 @@ class App extends React.Component {
 //      } else {
 //          return '91+';
 //      }
-      if (this.inactive) return 'TDI-Inactive';
+      if (tdi < 0.2994058) return 'TI-Inactive';
       else if (tdi === 0) return 0;
       else if (tdi <= -0.2597767) return 1;
       else if (tdi <= -0.136424) return 2;
@@ -388,7 +388,7 @@ class App extends React.Component {
 //                elm('h1', null, this.formatValue(this.tdi))
 //              ]),
               elm('div', { id: 'tdiGroup', className: 'single-result'}, [
-                elm('h4', null, 'Transplant Death Index'),
+                elm('h4', null, 'Transplant Index'),
                 elm('h1', null, this.tdiGroup)
               ]),
 //              elm('div', { id: 'p-transplant', className: 'single-result'}, [
