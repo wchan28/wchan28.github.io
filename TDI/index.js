@@ -259,8 +259,8 @@ class App extends React.Component {
 //      } else {
 //          return '91+';
 //      }
-      if (tdi < 0.2994058) return 'TI-Inactive';
-      else if (tdi === 0) return 0;
+      //if (tdi < 0.2994058) return 'TI-Inactive';
+      if (tdi === 0) return 0;
       else if (tdi <= -0.2597767) return 1;
       else if (tdi <= -0.136424) return 2;
       else if (tdi <= -0.0573148) return 3;
